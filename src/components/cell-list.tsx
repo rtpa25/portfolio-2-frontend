@@ -1,6 +1,6 @@
 /** @format */
 
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchCells } from '../store/thunks/fetchCells';
 import AddCell from './add-cell';
@@ -11,12 +11,15 @@ const CellList: React.FC = () => {
   const dispatch = useAppDispatch();
   const order = useAppSelector((state) => state.cell.order);
   const data = useAppSelector((state) => state.cell.data);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const cells = order.map((id) => {
     return data[id];
   });
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(fetchCells());
+    setIsLoading(false);
   }, [dispatch]);
 
   // //debouncing logic so that there is no post request on every key stroke
@@ -40,7 +43,7 @@ const CellList: React.FC = () => {
   return (
     <div className='cell-list'>
       <AddCell forceVisible={cells.length === 0} prevCellId={null} />
-      {renderedCells}
+      {isLoading ? <h1>Loading...</h1> : renderedCells}
     </div>
   );
 };
