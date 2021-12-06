@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path='/signup' element={token ? <Home /> : <Register />} />
         <Route path='/login' element={token ? <Home /> : <Login />} />
-        <Route path='/' element={token ? <Home /> : <Register />} />
+        <Route path='/' element={token ? <Home /> : <Login />} />
       </Routes>
     </BrowserRouter>
   );

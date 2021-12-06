@@ -87,8 +87,10 @@ const Login = () => {
   };
 
   return (
-    <Container className='flex items-center justify-center w-screen h-screen'>
-      <Wrapper className='w-4/12 bg-white p-7'>
+    <Container className='flex flex-col items-center justify-center w-screen h-screen'>
+      <h1>Demo Account: 'test@email.com'</h1>
+      <h1>Demo password: 'test0123'</h1>
+      <Wrapper className='w-4/12 m-5 bg-white p-7'>
         <h1 className='text-4xl font-light text-gray-700'>LOGIN TO ACCOUNT</h1>
         <Form className='flex flex-col'>
           <Input
