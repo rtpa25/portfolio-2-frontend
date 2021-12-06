@@ -76,7 +76,9 @@ const Login = () => {
       let res = await login(dispatch, { email: email, password: password });
       if (error === false && isFetching === false) {
         Cookies.remove('token');
-        Cookies.set('token', res?.data.token);
+        if (res?.data.token !== undefined) {
+          Cookies.set('token', res?.data.token);
+        }
         window.location.reload();
         navigate('/');
       }
